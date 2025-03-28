@@ -1,0 +1,62 @@
+#include "game.h"
+
+void startGame(Player *player) { /* Pointing to address of player to allow for modification of position, fuel
+                                    and parts player data */
+
+/*__________________________________________________________________________________________________________________*/
+
+    //Read prologue text from text file
+    FILE *file = fopen("prologue.txt", "r");  //"r" mode is reading mode
+
+    //Check if text file opened
+    if (file == NULL) {
+        printf("Error! Could not open prologue text file\n");
+        return;  // Exit game if text file could not be opened
+    }
+
+
+    //Display the prologue text
+    char line[150];  //creates a buffer to hold each line of prologue text, set to 150 to hold longest line.
+
+    while (fgets(line, sizeof(line), file)) { /* Reads a line and stores it in buffer
+                                                          while loop continues until 'fgets' returns nothing */
+
+        printf("%s", line);  //Prints each line read from the text file
+    }
+    fclose(file);  //Close text file
+
+/*_________________________________________________________________________________________________________________*/
+
+
+    int difficulty; //Integer variable for difficulty setting
+
+    // Player can choose difficulty at start of game
+    printf("Please choose a difficulty setting...\n");
+    printf("Press '1' for Normal Mode\n"); //Starting fuel = 60 Litres
+    printf("Press '2' for Hard Mode\n");   //Starting fuel = 40 Litres
+    scanf("%d", &difficulty);
+
+    while (difficulty != 1 && difficulty != 2) { // loop to ensure only 1 or 2 is pressed.
+
+        printf("Please press '1' for Normal or '2' for Hard:");
+        scanf("%d", &difficulty);
+    }
+
+    // Set starting fuel based on difficulty selected by the user
+    if (difficulty == 1) { // double equal used to compare, not set.
+        player->fuel = 60;
+    } else {
+        player->fuel = 40;
+    }
+
+/*_________________________________________________________________________________________________________________*/
+
+    // Sets player starting position to the center of world map (10, 10)
+    player->x = world_size / 2;
+    player->y = world_size / 2;
+
+    // Sets collected parts at start of game to 0
+    player->parts = 0;
+
+    printf("The game has started! You have %dL of fuel left. Good luck!\n", player->fuel);
+}
