@@ -1,0 +1,16 @@
+#include "game.h"
+
+int main() {
+    Player player;  //declares player variable
+
+    //Call startGame function to test
+    startGame(&player);
+
+    // Check if the player data has been set correctly
+    printf("Player position: (%d,%d)\n", player.x, player.y);
+    printf("Fuel: %d\n", player.fuel);
+    printf("Parts: %d\n", player.parts);
+
+    return 0;
+}
+
