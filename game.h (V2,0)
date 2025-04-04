@@ -1,0 +1,25 @@
+/*This header file contains structure declarations for player data,
+ and prototypes for main game functions*/
+
+#ifndef GAME_H
+#define GAME_H
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// World will be 0-19 wide (20 values), base and height
+#define world_size 20
+
+//declaring structures for player data
+typedef struct {
+    int x, y; // will monitor player position
+    int fuel; // will monitor remaining fuel
+    int parts; //will monitor number of collected ship parts
+    } Player;
+
+//function prototypes
+void startGame(Player *player);
+void displayWorld(Player player);
+void movePlayer(Player *player,char direction);
+
+#endif
