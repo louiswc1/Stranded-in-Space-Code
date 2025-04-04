@@ -19,6 +19,6 @@ typedef struct {
 //function prototypes
 void startGame(Player *player);
 void displayWorld(Player player);
-void playerMove(Player *player,char direction);
+void movePlayer(Player *player,char direction);
 
 #endif
