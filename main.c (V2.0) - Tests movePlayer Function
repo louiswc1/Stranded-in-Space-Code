@@ -1,0 +1,37 @@
+#include "game.h"
+
+// main.c Version 2.0 - Test for movePlayer function
+
+int main() {
+    Player player;
+
+    // Setup player starting data
+    player.x = 10;
+    player.y = 10;
+    player.fuel = 12;  // Fuel limit set to 12 for ease of testing
+
+    // Print player starting info
+    printf("Starting position: (%d, %d)\n", player.x, player.y);
+    printf("Fuel remaining: %d\n", player.fuel);
+
+    char move;
+
+    // while loop to keep test running until fuel reaches 0
+    while (player.fuel > 0) {
+        printf("Use WASD followed by enter to move: ");
+        scanf(" %c", &move);
+
+        // call movePlayer function
+        movePlayer(&player, move);
+
+        // print new player position and fuel after every move
+        printf("New Position: (%d, %d)\n", player.x, player.y);
+        printf("Remaining Fuel: %d\n", player.fuel);
+
+        // Check if fuel has reached 0, if so, end the game
+        if (player.fuel <= 0) {
+            printf("Game over, you ran out of fuel!\n");
+            break; }
+    }
+    return 0;
+}
