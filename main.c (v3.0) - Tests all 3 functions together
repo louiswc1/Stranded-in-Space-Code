@@ -1,0 +1,27 @@
+// main.c Version 3.0 - Test for startGame, movePlayer and displayWorld functions
+
+#include "game.h"
+
+int main() {
+    Player player;
+
+    // call startGame function to initialize starting player data
+    startGame(&player);
+
+    char move;
+
+    while (player.fuel > 0) { // loop continues until player runs out of fuel for test purposes (no win condition yet)
+
+        displayWorld(player);  // call function and display world
+
+        printf("Use WASD followed by Enter to move: ");
+        scanf(" %c", &move);  // space before %c skips any leftover newline characters
+
+        movePlayer(&player, move);  // call movePlayer function
+        }
+
+    printf("Game over, you ran out of fuel!\n");
+
+    return 0;
+}
+
