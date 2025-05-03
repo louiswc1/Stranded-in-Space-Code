@@ -1,0 +1,37 @@
+// main.c Version 4.0 - Execution file for startGame, movePlayer, displayWorld and placeshipParts functions
+
+#include "game.h"
+
+int main() {
+    Player player;
+
+    // call startGame function to initialize starting player data
+    startGame(&player);
+
+    // Call placeShipParts function to randomly place the ship parts
+    placeShipParts(&player);
+
+    char move;
+
+    while (player.fuel > 0) { // loop continues until player runs out of fuel for test purposes (no win condition yet)
+
+        displayWorld(player);  // call function and display world
+
+        printf("Use WASD followed by Enter to move: ");
+        scanf(" %c", &move);  // space before %c skips any leftover newline characters
+
+        movePlayer(&player, move);  // call movePlayer function
+
+        // Win condition
+        if (player.parts >= 10) {
+            printf("\nCongratulations! You collected all 10 ship parts.\n");
+            printf("You have repaired your ships communication systems and sent out an SOS call. Help is on the way. YOU WIN!\n");
+            break;
+        }
+    }
+
+    if (player.fuel <= 0 && player.parts < 10) {
+        printf("Game over, you ran out of fuel!\n");
+    }
+    return 0;
+}
